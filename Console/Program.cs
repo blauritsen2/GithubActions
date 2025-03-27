@@ -63,10 +63,11 @@ public class Program
 		return Console.ReadLine()?.Trim() ?? throw new InvalidOperationException();
 	}
 
-	public static double Add(string x, string y)
-	{
-		return double.Parse(x) + double.Parse(y);
-	}
+	public static double Add(string? x, string? y)
+{
+    if (x is null || y is null) throw new ArgumentNullException();
+    return double.Parse(x) + double.Parse(y);
+}
 
 	public static double Subtract(string x, string y)
 	{
@@ -79,9 +80,10 @@ public class Program
 	}
 
 	public static double Divide(string x, string y)
-	{
-		return double.Parse(x) / double.Parse(y);
-	}
+{
+    if (y == "0") throw new DivideByZeroException("Cannot divide by zero.");
+    return double.Parse(x) / double.Parse(y);
+}
 
 	// Implement this method following a similar pattern as above
 	public static double Power(string x, string y)
